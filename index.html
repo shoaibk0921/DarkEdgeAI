@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DarkEdge AI - Quotex Signals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white min-h-screen">
+
+  <div class="max-w-2xl mx-auto p-6">
+    <h1 class="text-5xl font-bold text-center text-purple-400 mb-2">DarkEdge AI</h1>
+    <p class="text-center text-gray-400 mb-10">AI-Powered Trading Signal Platform</p>
+
+    <div class="bg-gray-900 rounded-3xl p-8">
+      <div class="flex gap-4 mb-8">
+        <select id="pair" class="flex-1 bg-black p-5 rounded-2xl text-lg">
+          <option>EUR/USD</option>
+          <option>GBP/USD</option>
+          <option>USD/JPY</option>
+          <option>AUD/USD</option>
+        </select>
+        <button onclick="generateSignal()" class="bg-purple-600 px-10 py-5 rounded-2xl font-bold text-lg">
+          Generate Signal
+        </button>
+      </div>
+
+      <div id="result" class="hidden text-center bg-black/50 rounded-2xl p-8">
+        <h2 id="pairName" class="text-3xl mb-4"></h2>
+        <h1 id="signal" class="text-7xl my-6 font-bold"></h1>
+        <p id="confidence" class="text-5xl text-green-400"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function generateSignal() {
+      const pair = document.getElementById("pair").value;
+      const isCall = Math.random() > 0.5;
+      const signalText = isCall ? "CALL ↑" : "PUT ↓";
+      const conf = Math.floor(Math.random() * 25) + 78;
+
+      document.getElementById("result").classList.remove("hidden");
+      document.getElementById("pairName").textContent = pair + " (1 Min)";
+      document.getElementById("signal").textContent = signalText;
+      document.getElementById("signal").style.color = isCall ? "#22c55e" : "#ef4444";
+      document.getElementById("confidence").textContent = conf + "% Confidence";
+    }
+  </script>
+</body>
+</html>
